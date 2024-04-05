@@ -135,7 +135,14 @@ class Game {
 
     const self = this;
 
-    loader.load('hdr/venice_sunset_1k.hdr', (texture) => {
+    let envolvente = '';
+    // envolvente = 'apartment.hdr';
+    // envolvente = 'factory.hdr';
+    // envolvente = 'field_sky.hdr';
+    // envolvente = 'living_room.hdr';
+    envolvente = 'venice_sunset_1k.hdr';
+
+    loader.load('hdr/'+envolvente, (texture) => {
       const envMap = pmremGenerator.fromEquirectangular(texture).texture;
       pmremGenerator.dispose();
 
