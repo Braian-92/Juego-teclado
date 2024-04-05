@@ -5,12 +5,12 @@ import {
 import {
   LoadingBar
 } from './libs/LoadingBar.js';
-import {
-  Plane
-} from './Plane.js';
-import {
-  Obstacles
-} from './Obstacles.js';
+// import {
+//   Plane
+// } from './Plane.js';
+// import {
+//   Obstacles
+// } from './Obstacles.js';
 import {
   SFX
 } from './SFX.js';
@@ -67,18 +67,18 @@ class Game {
 
     this.spaceKey = false;
 
-    const btn = document.getElementById('playBtn');
-    btn.addEventListener('click', this.startGame.bind(this));
+    // const btn = document.getElementById('playBtn');
+    // btn.addEventListener('click', this.startGame.bind(this));
   }
 
   startGame() {
-    const gameover = document.getElementById('gameover');
-    const instructions = document.getElementById('instructions');
-    const btn = document.getElementById('playBtn');
+    // const gameover = document.getElementById('gameover');
+    // const instructions = document.getElementById('instructions');
+    // const btn = document.getElementById('playBtn');
 
-    gameover.style.display = 'none';
-    instructions.style.display = 'none';
-    btn.style.display = 'none';
+    // gameover.style.display = 'none';
+    // instructions.style.display = 'none';
+    // btn.style.display = 'none';
 
     this.score = 0;
     this.bonusScore = 0;
@@ -90,8 +90,8 @@ class Game {
     elm = document.getElementById('lives');
     elm.innerHTML = this.lives;
 
-    this.plane.reset();
-    this.obstacles.reset();
+    // this.plane.reset();
+    // this.obstacles.reset();
 
     this.active = true;
 
@@ -151,8 +151,8 @@ class Game {
     this.loading = true;
     this.loadingBar.visible = true;
 
-    this.plane = new Plane(this);
-    this.obstacles = new Obstacles(this);
+    // this.plane = new Plane(this);
+    // this.obstacles = new Obstacles(this);
 
     this.loadSFX();
   }
@@ -185,13 +185,13 @@ class Game {
   gameOver() {
     this.active = false;
 
-    const gameover = document.getElementById('gameover');
-    const btn = document.getElementById('playBtn');
+    // const gameover = document.getElementById('gameover');
+    // const btn = document.getElementById('playBtn');
 
-    gameover.style.display = 'block';
-    btn.style.display = 'block';
+    // gameover.style.display = 'block';
+    // btn.style.display = 'block';
 
-    this.plane.visible = false;
+    // this.plane.visible = false;
 
     this.sfx.stopAll();
     this.sfx.play('gameover');
@@ -225,31 +225,31 @@ class Game {
   }
 
   updateCamera() {
-    this.cameraController.position.copy(this.plane.position);
+    // this.cameraController.position.copy(this.plane.position);
     this.cameraController.position.y = 0;
-    this.cameraTarget.copy(this.plane.position);
+    // this.cameraTarget.copy(this.plane.position);
     this.cameraTarget.z += 6;
     this.camera.lookAt(this.cameraTarget);
   }
 
   render() {
-    if (this.loading) {
-      if (this.plane.ready && this.obstacles.ready) {
+    // if (this.loading) {
+    //   if (this.plane.ready && this.obstacles.ready) {
         this.loading = false;
         this.loadingBar.visible = false;
-      } else {
-        return;
-      }
-    }
+    //   } else {
+    //     return;
+    //   }
+    // }
 
     const dt = this.clock.getDelta();
     const time = this.clock.getElapsedTime();
 
-    this.plane.update(time);
+    // this.plane.update(time);
 
-    if (this.active) {
-      this.obstacles.update(this.plane.position, dt);
-    }
+    // if (this.active) {
+    //   this.obstacles.update(this.plane.position, dt);
+    // }
 
     this.updateCamera();
 
