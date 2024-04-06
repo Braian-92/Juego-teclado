@@ -1,7 +1,8 @@
-import * as THREE from './libs/three137/three.module.js';
+// import * as THREE from './libs/three/build/three.module.js';
+import * as THREE from 'three';
 import {
   RGBELoader
-} from './libs/three137/RGBELoader.js';
+} from './libs/three/examples/jsm/loaders/RGBELoader.js';
 import {
   LoadingBar
 } from './libs/LoadingBar.js';
@@ -33,7 +34,7 @@ class Game {
 
     this.cameraController = new THREE.Object3D();
     this.cameraController.add(this.camera);
-    this.cameraTarget = new THREE.Vector3(0, 0, 6);
+    this.cameraTarget = new THREE.Vector3(0, 0, 0);
 
     this.scene = new THREE.Scene();
     this.scene.add(this.cameraController);
@@ -67,8 +68,21 @@ class Game {
 
     this.spaceKey = false;
 
+    this.agregarElementos();
+
     // const btn = document.getElementById('playBtn');
     // btn.addEventListener('click', this.startGame.bind(this));
+  }
+
+  agregarElementos() {
+    // console.log('agregar elementos');
+    const torusKnotGeometry = new THREE.TorusKnotGeometry(0.2, 0.05);
+    const torusKnotMaterial = new THREE.MeshStandardMaterial();
+    const torusKnotMesh = new THREE.Mesh(torusKnotGeometry, torusKnotMaterial);
+    torusKnotMesh.castShadow = true;
+    // torusKnotMesh.position.y = 0.7;
+    torusKnotMesh.position.set(0,0,0);
+    this.scene.add(torusKnotMesh);
   }
 
   startGame() {
@@ -84,8 +98,8 @@ class Game {
     this.bonusScore = 0;
     this.lives = 3;
 
-    let elm = document.getElementById('score');
-    elm.innerHTML = this.score;
+    // let elm = document.getElementById('score');
+    // elm.innerHTML = this.score;
 
     elm = document.getElementById('lives');
     elm.innerHTML = this.lives;
@@ -235,7 +249,7 @@ class Game {
     // this.cameraController.position.copy(this.plane.position);
     this.cameraController.position.y = 0;
     // this.cameraTarget.copy(this.plane.position);
-    this.cameraTarget.z += 6;
+    // this.cameraTarget.z += 6;
     this.camera.lookAt(this.cameraTarget);
   }
 

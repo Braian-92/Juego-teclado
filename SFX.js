@@ -3,7 +3,7 @@ import {
   Audio,
   PositionalAudio,
   AudioLoader
-} from './libs/three137/three.module.js';
+} from './libs/three/build/three.module.js';
 
 class SFX {
     constructor(camera, assetsPath, listener){
