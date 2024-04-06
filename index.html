@@ -155,116 +155,24 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="sabana sabanainf mb-3">
-      <div class="row">
-        <div class="col-12">
-          <div class="container px-5">
-            <div class="row">
-              <div class="col-12">
-                <div id="teclado">
-                  <div class="rowTeclas d-flex">
-                    <div class="teclas flex-grow-1">esc</div>
-                    <div class="teclas flex-grow-1">1</div>
-                    <div class="teclas flex-grow-1">2</div>
-                    <div class="teclas flex-grow-1">3</div>
-                    <div class="teclas flex-grow-1">4</div>
-                    <div class="teclas flex-grow-1">5</div>
-                    <div class="teclas flex-grow-1">6</div>
-                    <div class="teclas flex-grow-1">7</div>
-                    <div class="teclas flex-grow-1">8</div>
-                    <div class="teclas flex-grow-1">9</div>
-                    <div class="teclas flex-grow-1">0</div>
-                    <div class="teclas flex-grow-1">-</div>
-                    <div class="teclas flex-grow-1">+</div>
-                  </div>
-                  <div class="rowTeclas d-flex">
-                    <div class="teclas flex-grow-1">Tab</div>
-                    <div class="teclas flex-grow-1">Q</div>
-                    <div class="teclas flex-grow-1">W</div>
-                    <div class="teclas flex-grow-1">E</div>
-                    <div class="teclas flex-grow-1">R</div>
-                    <div class="teclas flex-grow-1">T</div>
-                    <div class="teclas flex-grow-1">Y</div>
-                    <div class="teclas flex-grow-1">U</div>
-                    <div class="teclas flex-grow-1">I</div>
-                    <div class="teclas flex-grow-1">O</div>
-                    <div class="teclas flex-grow-1">P</div>
-                    <div class="teclas flex-grow-1">Delete</div>
-                  </div>
-                  <div class="rowTeclas d-flex">
-                    <div class="teclas flex-grow-1">Caps Lock</div>
-                    <div class="teclas flex-grow-1">A</div>
-                    <div class="teclas flex-grow-1">S</div>
-                    <div class="teclas flex-grow-1">D</div>
-                    <div class="teclas flex-grow-1">F</div>
-                    <div class="teclas flex-grow-1">G</div>
-                    <div class="teclas flex-grow-1">H</div>
-                    <div class="teclas flex-grow-1">J</div>
-                    <div class="teclas flex-grow-1">K</div>
-                    <div class="teclas flex-grow-1">L</div>
-                    <div class="teclas flex-grow-1">;</div>
-                    <div class="teclas flex-grow-1">Enter</div>
-                  </div>
-                  <div class="rowTeclas d-flex">
-                    <div class="teclas flex-grow-1">Shift</div>
-                    <div class="teclas flex-grow-1">Z</div>
-                    <div class="teclas flex-grow-1">X</div>
-                    <div class="teclas flex-grow-1">C</div>
-                    <div class="teclas flex-grow-1">V</div>
-                    <div class="teclas flex-grow-1">B</div>
-                    <div class="teclas flex-grow-1">N</div>
-                    <div class="teclas flex-grow-1">M</div>
-                    <div class="teclas flex-grow-1"><</div>
-                    <div class="teclas flex-grow-1">></div>
-                    <div class="teclas flex-grow-1">Shift</div>
-                  </div>
-                  <div class="rowTeclas d-flex">
-                    <div class="teclas flex-grow-1 active">Fn</div>
-                    <div class="teclas flex-grow-1">Control</div>
-                    <div class="teclas flex-grow-1">Option</div>
-                    <div class="teclas flex-grow-1">Command</div>
-                    <div class="teclas flex-grow-1"></div>
-                    <div class="teclas flex-grow-1"></div>
-                    <div class="teclas flex-grow-1">?</div>
-                    <div class="teclas flex-grow-1">|</div>
-                    <div class="d-flex rowTeclas flex-grow-1">
-                      <div class="teclas flex-grow-1 active">←</div>
-                      <div class="flex-column">
-                        <div class="teclaH50 active">↑</div>                  
-                        <div class="teclaH50 active">↓</div>                  
-                      </div>
-                    </div>
-                    <div class="teclas flex-grow-1 active">→</div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>      
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>  
-
-<link rel="stylesheet" type="text/css" href="./libs/adminlte3/adminlte.min.js">
-<script type="importmap">
-  {
-    "imports": {
-      "three": "./libs/three/build/three.module.js",
-      "three/addons/": "./libs/three/examples/jsm/"
-    }
-  }
-</script>
-<script type="module">
-  import { Game } from './Game.js';
   
-  document.addEventListener("DOMContentLoaded", () => {
-    const game = new Game();
-    window.game = game;  
-  });
-</script>
-</body>
 
+</body>
+  <script src="./libs/adminlte3/adminlte.min.js""></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./libs/three/build/three.module.js",
+        "three/addons/": "./libs/three/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module">
+    import { Game } from './Game.js';
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const game = new Game();
+      window.game = game;  
+    });
+  </script>
 </html>

@@ -9,6 +9,9 @@ import {
 import {
   SFX
 } from './SFX.js';
+import {
+  TecladoFlotante
+} from './TecladoFlotante.js';
 
 import { 
   FontLoader
@@ -75,6 +78,10 @@ class Game {
 
     this.agregarElementos();
     this.crearTexto('EVELYN');
+
+    this.teclado = new TecladoFlotante({
+      id : 'tecladoF'
+    });
 
     // const btn = document.getElementById('playBtn');
     // btn.addEventListener('click', this.startGame.bind(this));
