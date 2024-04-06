@@ -16,6 +16,11 @@ import {
   SFX
 } from './SFX.js';
 
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+
 class Game {
   constructor() {
     const container = document.createElement('div');
@@ -29,15 +34,16 @@ class Game {
     this.assetsPath = './assets/';
 
     this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 100);
-    this.camera.position.set(-4.37, 0, -4.75);
-    this.camera.lookAt(0, 0, 6);
+    // this.camera.position.set(-4.37, 0, -4.75);
+    this.camera.position.set(0, 0, 30);
+    // this.camera.lookAt(0, 0, 6);
 
-    this.cameraController = new THREE.Object3D();
-    this.cameraController.add(this.camera);
-    this.cameraTarget = new THREE.Vector3(0, 0, 0);
+    // this.cameraController = new THREE.Object3D();
+    // this.cameraController.add(this.camera);
+    // this.cameraTarget = new THREE.Vector3(0, 0, 0);
 
     this.scene = new THREE.Scene();
-    this.scene.add(this.cameraController);
+    // this.scene.add(this.cameraController);
 
     const ambient = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
     ambient.position.set(0.5, 1, 0.25);
@@ -69,9 +75,84 @@ class Game {
     this.spaceKey = false;
 
     this.agregarElementos();
+    this.crearTexto('Evelyn');
 
     // const btn = document.getElementById('playBtn');
     // btn.addEventListener('click', this.startGame.bind(this));
+  }
+
+  
+
+  crearTexto(text) {
+
+    // let text = 'Evelyn',
+    let bevelEnabled = true,
+    font = undefined,
+    fontName = 'optimer', // helvetiker, optimer, gentilis, droid sans, droid serif
+    fontWeight = 'bold'; // normal bold
+    
+    const depth = 0.1,
+    size = 10,
+    hover = .1,
+
+    curveSegments = 10,
+
+    bevelThickness = 1, // profundidad del texto en 3D
+    bevelSize = .1;
+
+    let escenaPrincipal = this.scene;
+
+    const loader = new FontLoader();
+    loader.load( './libs/three/examples/fonts/' + fontName + '_' + fontWeight + '.typeface.json', function ( response ) {
+
+      font = response;
+
+      console.log(font);
+      console.log(text);
+
+      let materials = [
+        new THREE.MeshPhongMaterial( { color: 0xd30364, flatShading: true } ), // front
+        new THREE.MeshPhongMaterial( { color: 0x36012b } ) // side
+      ];
+
+      let textGeo = new TextGeometry( text, {
+
+        font: font,
+
+        size: size,
+        depth: depth,
+        curveSegments: curveSegments,
+
+        bevelThickness: bevelThickness,
+        bevelSize: bevelSize,
+        bevelEnabled: bevelEnabled
+
+      } );
+
+      textGeo.computeBoundingBox();
+
+      const centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+
+      let textMesh1 = new THREE.Mesh( textGeo, materials );
+
+      textMesh1.position.x = centerOffset;
+      // textMesh1.position.y = hover;
+      textMesh1.position.z = 0;
+
+      // textMesh1.rotation.x = 0;
+      // textMesh1.rotation.y = Math.PI * 2;
+
+      escenaPrincipal.add( textMesh1 );
+
+    } );
+
+
+
+			
+
+    
+
+    
   }
 
   agregarElementos() {
@@ -247,10 +328,10 @@ class Game {
 
   updateCamera() {
     // this.cameraController.position.copy(this.plane.position);
-    this.cameraController.position.y = 0;
+    // this.cameraController.position.y = 0;
     // this.cameraTarget.copy(this.plane.position);
     // this.cameraTarget.z += 6;
-    this.camera.lookAt(this.cameraTarget);
+    // this.camera.lookAt(this.cameraTarget);
   }
 
   render() {
