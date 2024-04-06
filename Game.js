@@ -6,20 +6,18 @@ import {
 import {
   LoadingBar
 } from './libs/LoadingBar.js';
-// import {
-//   Plane
-// } from './Plane.js';
-// import {
-//   Obstacles
-// } from './Obstacles.js';
 import {
   SFX
 } from './SFX.js';
 
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { 
+  FontLoader
+} from 'three/addons/loaders/FontLoader.js';
+import {
+  TextGeometry
+} from 'three/addons/geometries/TextGeometry.js';
 
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+// import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 class Game {
   constructor() {
@@ -64,6 +62,7 @@ class Game {
 
     window.addEventListener('resize', this.resize.bind(this));
 
+    document.addEventListener('keypress', this.keypress.bind(this));
     document.addEventListener('keydown', this.keyDown.bind(this));
     document.addEventListener('keyup', this.keyUp.bind(this));
 
@@ -75,7 +74,7 @@ class Game {
     this.spaceKey = false;
 
     this.agregarElementos();
-    this.crearTexto('Evelyn');
+    this.crearTexto('EVELYN');
 
     // const btn = document.getElementById('playBtn');
     // btn.addEventListener('click', this.startGame.bind(this));
@@ -199,7 +198,13 @@ class Game {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
+  keypress(evt) {
+    // this.sfx.playMulti('tecla');
+  }
+
   keyDown(evt) {
+    this.sfx.stopAll();
+    this.sfx.play('tecla');
     switch (evt.keyCode) {
       case 32:
         this.spaceKey = true;
@@ -267,6 +272,7 @@ class Game {
     this.sfx.load('gliss');
     this.sfx.load('gameover');
     this.sfx.load('bonus');
+    this.sfx.load('tecla');
   }
 
   loadSkybox() {
