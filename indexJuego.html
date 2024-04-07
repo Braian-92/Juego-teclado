@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="./libs/adminlte3/adminlte.min.css">
+  <link rel="stylesheet" type="text/css" href="./TecladoFlotante.css">
+</head>
+<body class="dark-modeX">
+  
+</body>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "./libs/three/build/three.module.js",
+      "three/addons/": "./libs/three/examples/jsm/"
+    }
+  }
+</script>
+<script type="module">
+  import {
+    Juego
+  } from './Juego.js';
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    const juego = new Juego();
+    window.juego = juego;  
+  });
+</script>
+</html>
