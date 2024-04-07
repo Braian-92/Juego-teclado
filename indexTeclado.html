@@ -16,9 +16,16 @@
   } from './TecladoFlotante.js';
   
   document.addEventListener("DOMContentLoaded", () => {
+    // Uso de la clase TecladoFlotante con la función de callback
     const teclado = new TecladoFlotante({
-      id : 'tecladoF'
-    }); 
+      id: 'tecladoF'
+    });
+
+    // Establecer una función de callback para manejar eventos de teclado
+    teclado.presionado(function(parametros) {
+      const tecla = parametros.ascii;
+      console.log(tecla);
+    });
   });
 </script>
 </html>

@@ -80,7 +80,13 @@ class Game {
     this.crearTexto('EVELYN');
 
     this.teclado = new TecladoFlotante({
-      id : 'tecladoF'
+      id : 'tecladoF',
+      
+    });
+
+    this.teclado.presionado(function(parametros) {
+      const tecla = parametros.ascii;
+      console.log('TECLA APRETADA: ' + tecla);
     });
 
     // const btn = document.getElementById('playBtn');

@@ -1,11 +1,10 @@
-class TecladoFlotante{
-	constructor(options){
-		this.options = options;
-		const contenedor = document.createElement("div");
-    contenedor.id = this.options.id; // Asignar el ID al contenedor
-    contenedor.classList.add("container-fluid"); // Agregar clases al contenedor
+class TecladoFlotante {
+  constructor(options) {
+    this.options = options;
+    const contenedor = document.createElement("div");
+    contenedor.id = this.options.id;
+    contenedor.classList.add("container-fluid");
 
-    // Inyectar el HTML dentro del contenedor
     contenedor.innerHTML = `
 		<div id="tecladoF" class="container-fluid">
 			<div class="sabana sabanainf mb-3">
@@ -98,39 +97,43 @@ class TecladoFlotante{
 			</div>
 		</div>
 		`;
-		
 
-
-    // Agregar el contenedor al body del documento
     document.body.appendChild(contenedor);
-
-    // Asignar el contenedor al objeto actual
     this.contenedor = document.querySelector(`#${this.options.id}`);
 
     if (this.contenedor) {
       const teclado = this;
-      // Agregar el evento click a todas las teclas
-      this.contenedor.querySelectorAll(".teclas").forEach(tecla => {
-        tecla.addEventListener("click", function(evt) {
-          evt.preventDefault();
-          teclado.click(evt);
-        });
+      this.contenedor.addEventListener("click", function(event) {
+        teclado.handleClick(event);
       });
     }
-	}
-		
-	set visible( mode ){
-		const setting = (mode) ? 'block' : 'none';
-		this.contenedor.style.display = setting;
-	}
 
-	click(evt) {
-    // Extraer el atributo asciiTecla del evento
-    const asciiTecla = evt.target.getAttribute("asciiTecla");
-    // Aquí puedes utilizar el atributo asciiTecla
-    console.log("Tecla presionada con ASCII:", asciiTecla);
-    // Agrega aquí la lógica que necesites con la tecla presionada
+    // Verificar si se ha proporcionado una función de callback
+    if (typeof options.presionado === 'function') {
+      this.presionadoCallback = options.presionado;
+    }
+  }
+
+  handleClick(event) {
+    const asciiTecla = event.target.getAttribute("asciiTecla");
+    // console.log("Tecla presionada con ASCII:", asciiTecla);
+    if (this.presionadoCallback) {
+      // Llamar a la función de callback si está definida
+      this.presionadoCallback({ ascii: asciiTecla });
+    }
+  }
+
+  set visible(mode) {
+    const setting = mode ? "block" : "none";
+    this.contenedor.style.display = setting;
+  }
+
+  presionado(callback) {
+    // Permite establecer una función de callback para manejar eventos de teclado
+    this.presionadoCallback = callback;
   }
 }
+
+
 
 export { TecladoFlotante };
