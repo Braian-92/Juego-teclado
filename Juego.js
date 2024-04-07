@@ -61,6 +61,13 @@ class Juego {
 
     this.texto3D.crearTexto('EVELYN');
 
+    setTimeout(() => {
+      this.texto3D.crearTexto('BRAIAN');
+      setTimeout(() => {
+        this.texto3D.crearTexto('NATALIA');
+      }, 3000);
+    }, 3000);
+
     this.active = false;
     this.load();
     window.addEventListener('resize', this.resize.bind(this));

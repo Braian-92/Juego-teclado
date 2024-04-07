@@ -5,9 +5,18 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'; // Impor
 class Texto3D {
   constructor(scene) {
     this.scene = scene;
+    this.letras = null; // Inicializa la propiedad de letras como nulo
   }
 
   crearTexto(text) {
+    // Eliminar el texto anterior si existe
+    if (this.letras !== null) {
+      this.letras.forEach(letra => {
+        this.scene.remove(letra);
+      });
+    }
+
+    // Crear el nuevo texto
     let bevelEnabled = true,
         font = undefined,
         fontName = 'optimer', // helvetiker, optimer, gentilis, droid sans, droid serif
@@ -20,12 +29,11 @@ class Texto3D {
         bevelThickness = 1, // profundidad del texto en 3D
         bevelSize = .1;
 
-    let escenaPrincipal = this.scene;
     let letras = []; // Array para almacenar las letras individuales
     let separacionLetras = 2; // Separación entre letras
 
-    const loader = new FontLoader(); // Utiliza FontLoader para cargar la fuente
-    loader.load( './libs/three/examples/fonts/' + fontName + '_' + fontWeight + '.typeface.json', function ( response ) {
+    const loader = new FontLoader();
+    loader.load( './libs/three/examples/fonts/' + fontName + '_' + fontWeight + '.typeface.json', (response) => {
         font = response;
 
         let materialsPorLetra = []; // Array para almacenar materiales por letra
@@ -41,7 +49,7 @@ class Texto3D {
 
         // Crear y posicionar cada letra
         for (let i = 0; i < text.length; i++) {
-            let letraGeo = new TextGeometry( text[i], { // Utiliza TextGeometry para crear la geometría del texto
+            let letraGeo = new TextGeometry( text[i], {
                 font: font,
                 size: size,
                 depth: depth,
@@ -62,7 +70,7 @@ class Texto3D {
             letraMesh.position.z = 0;
 
             // Agregar la letra a la escena y al array
-            escenaPrincipal.add( letraMesh );
+            this.scene.add( letraMesh );
             letras.push(letraMesh);
         }
 
@@ -73,6 +81,9 @@ class Texto3D {
         letras.forEach(letraMesh => {
             letraMesh.position.x += centerOffset;
         });
+
+        // Guardar las letras actuales en la propiedad this.letras
+        this.letras = letras;
     });
   }
 }
