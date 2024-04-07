@@ -12,6 +12,9 @@ import {
 import { 
   Texto3D
 } from './Texto3D.js'
+import {
+  SFX
+} from './SFX.js';
 
 
 class Juego {
@@ -44,6 +47,7 @@ class Juego {
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     container.appendChild(this.renderer.domElement);
     this.setEnvironment();
+    this.load();
 
     
 
@@ -57,6 +61,7 @@ class Juego {
     console.log('texto3D', this.texto3D);
 
     let texto3D = this.texto3D;
+    let sfx = this.sfx;
 
     this.teclado = new TecladoFlotante({
       id : 'tecladoF',
@@ -65,9 +70,24 @@ class Juego {
         const tipoTecla = parametros.tipo;
         console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
         let resultadoLetra = texto3D.verificarLetra(tecla);
+        const indiceActual = texto3D.indicePalabra;
+        const totalLetrasL= texto3D.palabra.length
+        console.log('indiceActual', indiceActual);
+        console.log('totalLetrasL', totalLetrasL);
         console.log('resultadoLetra', resultadoLetra);
-        if(resultadoLetra){
+        if(indiceActual == totalLetrasL){
           texto3D.crearTexto(texto3D.palabra);
+          sfx.stopAll();
+          sfx.play('bonus');
+        }else{
+          if(resultadoLetra){
+            texto3D.crearTexto(texto3D.palabra);
+            sfx.stopAll();
+            sfx.play('teclaCristal');
+          }else{
+            sfx.stopAll();
+            sfx.play('error');
+          }
         }
       }
     });
@@ -80,7 +100,7 @@ class Juego {
     // }, 3000);
 
     this.active = false;
-    this.load();
+    
     window.addEventListener('resize', this.resize.bind(this));
   }
 
@@ -117,6 +137,20 @@ class Juego {
     this.loadSkybox();
     this.loading = true;
     this.loadingBar.visible = true;
+    this.loadSFX();
+  }
+
+  loadSFX() {
+    this.sfx = new SFX( this.camera, this.assetsPath + 'plane/');
+
+    this.sfx.load('explosion');
+    this.sfx.load('engine', true, 1);
+    this.sfx.load('gliss');
+    this.sfx.load('gameover');
+    this.sfx.load('bonus');
+    this.sfx.load('tecla');
+    this.sfx.load('teclaCristal');
+    this.sfx.load('error');
   }
 
   loadSkybox() {
