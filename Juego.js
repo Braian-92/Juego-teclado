@@ -6,7 +6,12 @@ import {
 import {
   LoadingBar
 } from './libs/LoadingBar.js';
-
+import {
+  TecladoFlotante
+} from './TecladoFlotante.js';
+import { 
+  Texto3D
+} from './Texto3D.js'
 
 class Juego {
   constructor() {
@@ -38,6 +43,22 @@ class Juego {
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     container.appendChild(this.renderer.domElement);
     this.setEnvironment();
+
+    this.teclado = new TecladoFlotante({
+      id : 'tecladoF',
+      presionado: function(parametros) {
+        const tecla = parametros.ascii;
+        const tipoTecla = parametros.tipo;
+        console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
+      }
+    });
+
+    this.texto3D = new Texto3D(
+      this.scene,
+      this.assetsPath
+    ); // Inicialización de Texto3D
+
+    this.texto3D.crearTexto('EVELYN');
 
     this.active = false;
     this.load();
