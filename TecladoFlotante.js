@@ -116,15 +116,17 @@ class TecladoFlotante {
 
   handleClick(event) {
     const asciiTecla = event.target.getAttribute("asciiTecla");
+    const tipoTecla = event.target.getAttribute("tipo");
     // console.log("Tecla presionada con ASCII:", asciiTecla);
-    if (this.presionadoCallback) {
+    if (this.presionadoCallback && asciiTecla !== null) {
       // Llamar a la función de callback si está definida
-      this.presionadoCallback({ ascii: asciiTecla });
+      this.presionadoCallback({ ascii: asciiTecla, tipo: tipoTecla });
     }
   }
 
   set visible(mode) {
-    const setting = mode ? "block" : "none";
+		const setting = mode ? "block" : "none";
+		console.log('witch teclado vision: ' + setting);
     this.contenedor.style.display = setting;
   }
 

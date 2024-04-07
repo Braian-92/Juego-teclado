@@ -6,6 +6,8 @@ import {
 import {
   LoadingBar
 } from './libs/LoadingBar.js';
+//! libreria de sonidos
+// https://pixabay.com/sound-effects/search/key-press/
 import {
   SFX
 } from './SFX.js';
@@ -83,7 +85,8 @@ class Game {
       id : 'tecladoF',
       presionado: function(parametros) {
         const tecla = parametros.ascii;
-        console.log('TECLA APRETADA: ' + tecla);
+        const tipoTecla = parametros.tipo;
+        console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
       }
     });
 
@@ -284,6 +287,7 @@ class Game {
     this.sfx.load('gameover');
     this.sfx.load('bonus');
     this.sfx.load('tecla');
+    this.sfx.load('teclaCristal');
   }
 
   loadSkybox() {

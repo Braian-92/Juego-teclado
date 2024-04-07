@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="./libs/adminlte3/adminlte.min.css">
   <link rel="stylesheet" type="text/css" href="./TecladoFlotante.css">
 </head>
-<body>
+<body class="dark-modeX">
   
 </body>
 <script type="module">
@@ -16,16 +16,18 @@
   } from './TecladoFlotante.js';
   
   document.addEventListener("DOMContentLoaded", () => {
-    // Uso de la clase TecladoFlotante con la función de callback
+    
     const teclado = new TecladoFlotante({
-      id: 'tecladoF'
+      presionado: function(parametros) {
+        const tecla = parametros.ascii;
+        console.log('TECLA APRETADA: ' + tecla);
+      }
     });
 
-    // Establecer una función de callback para manejar eventos de teclado
-    teclado.presionado(function(parametros) {
-      const tecla = parametros.ascii;
-      console.log(tecla);
-    });
+    // teclado.visible = false;
+    // setTimeout(() => {
+    //   teclado.visible = true;
+    // }, 5000);
   });
 </script>
 </html>
