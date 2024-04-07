@@ -5,10 +5,13 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'; // Impor
 class Texto3D {
   constructor(scene) {
     this.scene = scene;
-    this.letras = null; // Inicializa la propiedad de letras como nulo
+    this.letras = []; // Inicializa la propiedad de letras como un array vacío
+    this.palabra = ''; // Inicializa la palabra como una cadena vacía
+    this.indicePalabra = 0; // Inicializa el índice de la palabra en 0
   }
 
   crearTexto(text) {
+    this.palabra = text;
     // Eliminar el texto anterior si existe
     if (this.letras !== null) {
       this.letras.forEach(letra => {
@@ -85,6 +88,38 @@ class Texto3D {
         // Guardar las letras actuales en la propiedad this.letras
         this.letras = letras;
     });
+  }
+
+  verificarLetra(ascii) {
+    // Verificar si la letra ingresada coincide con la letra de la palabra actual
+    const letraPalabra = this.palabra.charAt(this.indicePalabra);
+    const letraIngresada = String.fromCharCode(ascii);
+
+    console.log('letraPalabra', letraPalabra);
+    console.log('letraIngresada', letraIngresada);
+
+    if (letraIngresada === letraPalabra) {
+      console.log('bien');
+      // Si la letra ingresada es correcta, actualizar el color de la letra a verde
+      this.indicePalabra++;
+
+      // // Actualizar el color de las letras
+      // this.letras.forEach((letra, index) => {
+      //   letra.material = (index < this.indicePalabra) ? this.materialCorrecto : this.materialIncorrecto;
+      // });
+
+      // Si se completó la palabra, devolver true, de lo contrario, false
+      return true;
+      // return (this.indicePalabra === this.palabra.length);
+    } else {
+      console.log('mal');
+      // Si la letra ingresada es incorrecta, actualizar el color de la letra a rojo
+      // this.letras.forEach((letra, index) => {
+      //   letra.material = (index < this.indicePalabra) ? this.materialCorrecto : this.materialIncorrecto;
+      // });
+      
+      return false;
+    }
   }
 }
 

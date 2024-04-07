@@ -45,14 +45,7 @@ class Juego {
     container.appendChild(this.renderer.domElement);
     this.setEnvironment();
 
-    this.teclado = new TecladoFlotante({
-      id : 'tecladoF',
-      presionado: function(parametros) {
-        const tecla = parametros.ascii;
-        const tipoTecla = parametros.tipo;
-        console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
-      }
-    });
+    
 
     this.texto3D = new Texto3D(
       this.scene,
@@ -61,12 +54,27 @@ class Juego {
 
     this.texto3D.crearTexto('EVELYN');
 
-    setTimeout(() => {
-      this.texto3D.crearTexto('BRAIAN');
-      setTimeout(() => {
-        this.texto3D.crearTexto('NATALIA');
-      }, 3000);
-    }, 3000);
+    console.log('texto3D', this.texto3D);
+
+    let texto3D = this.texto3D;
+
+    this.teclado = new TecladoFlotante({
+      id : 'tecladoF',
+      presionado: function(parametros) {
+        const tecla = parametros.ascii;
+        const tipoTecla = parametros.tipo;
+        console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
+        let resultadoLetra = texto3D.verificarLetra(tecla);
+        console.log('resultadoLetra', resultadoLetra);
+      }
+    });
+
+    // setTimeout(() => {
+    //   this.texto3D.crearTexto('BRAIAN');
+    //   setTimeout(() => {
+    //     this.texto3D.crearTexto('NATALIA');
+    //   }, 3000);
+    // }, 3000);
 
     this.active = false;
     this.load();
