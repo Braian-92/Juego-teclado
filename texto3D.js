@@ -39,14 +39,11 @@ class Texto3D {
     loader.load( './libs/three/examples/fonts/' + fontName + '_' + fontWeight + '.typeface.json', (response) => {
         font = response;
 
-        let materialsPorLetra = []; // Array para almacenar materiales por letra
+        // Crear el material de letra correcta (verde)
+        const materialCorrecto = new THREE.MeshPhongMaterial({ color: 0x00ff00, flatShading: true });
 
-        for (let i = 0; i < text.length; i++) {
-            // Crear material con color aleatorio
-            let color = Math.random() * 0xffffff;
-            let material = new THREE.MeshPhongMaterial({ color: color, flatShading: true });
-            materialsPorLetra.push(material);
-        }
+        // Crear el material de letra incorrecta (roja)
+        const materialIncorrecto = new THREE.MeshPhongMaterial({ color: 0xff0000, flatShading: true });
 
         let totalWidth = 0;
 
@@ -63,7 +60,7 @@ class Texto3D {
             } );
 
             // Crear la malla de la letra con el material correspondiente
-            let letraMesh = new THREE.Mesh( letraGeo, materialsPorLetra[i] );
+            let letraMesh = new THREE.Mesh( letraGeo, (i < this.indicePalabra) ? materialCorrecto : materialIncorrecto );
 
             // Calcular el desplazamiento horizontal de la letra
             letraGeo.computeBoundingBox();

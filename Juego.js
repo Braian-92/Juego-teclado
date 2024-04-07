@@ -66,6 +66,9 @@ class Juego {
         console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
         let resultadoLetra = texto3D.verificarLetra(tecla);
         console.log('resultadoLetra', resultadoLetra);
+        if(resultadoLetra){
+          texto3D.crearTexto(texto3D.palabra);
+        }
       }
     });
 
