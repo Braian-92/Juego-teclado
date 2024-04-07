@@ -108,6 +108,14 @@ class TecladoFlotante {
       });
     }
 
+    // Agregar escucha de evento de teclado en todo el documento
+    document.addEventListener('keydown', event => {
+      if (this.presionadoCallback) {
+        const asciiTecla = event.keyCode.toString();
+        this.presionadoCallback({ ascii: asciiTecla, tipo: "TECLADO_REAL" });
+      }
+    });
+
     // Verificar si se ha proporcionado una función de callback
     if (typeof options.presionado === 'function') {
       this.presionadoCallback = options.presionado;
@@ -125,8 +133,8 @@ class TecladoFlotante {
   }
 
   set visible(mode) {
-		const setting = mode ? "block" : "none";
-		console.log('witch teclado vision: ' + setting);
+    const setting = mode ? "block" : "none";
+    console.log('witch teclado vision: ' + setting);
     this.contenedor.style.display = setting;
   }
 
@@ -135,7 +143,5 @@ class TecladoFlotante {
     this.presionadoCallback = callback;
   }
 }
-
-
 
 export { TecladoFlotante };
