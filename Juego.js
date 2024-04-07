@@ -13,6 +13,7 @@ import {
   Texto3D
 } from './Texto3D.js'
 
+
 class Juego {
   constructor() {
     const container = document.createElement('div');
@@ -62,6 +63,7 @@ class Juego {
 
     this.active = false;
     this.load();
+    window.addEventListener('resize', this.resize.bind(this));
   }
 
   resize() {
