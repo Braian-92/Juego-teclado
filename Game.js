@@ -81,12 +81,10 @@ class Game {
 
     this.teclado = new TecladoFlotante({
       id : 'tecladoF',
-      
-    });
-
-    this.teclado.presionado(function(parametros) {
-      const tecla = parametros.ascii;
-      console.log('TECLA APRETADA: ' + tecla);
+      presionado: function(parametros) {
+        const tecla = parametros.ascii;
+        console.log('TECLA APRETADA: ' + tecla);
+      }
     });
 
     // const btn = document.getElementById('playBtn');
