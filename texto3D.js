@@ -27,6 +27,7 @@ class Texto3D {
     
     const depth = 0.1,
         size = 8,
+        sizeActual = 14,
         hover = .1,
         curveSegments = 10,
         bevelThickness = 1, // profundidad del texto en 3D
@@ -39,11 +40,47 @@ class Texto3D {
     loader.load( './libs/three/examples/fonts/' + fontName + '_' + fontWeight + '.typeface.json', (response) => {
         font = response;
 
+        const colores = [
+          0xeeff00, // 0
+          0x00ff00, // 1
+          0xff0000, // 2
+          0x0000ff, // 3
+          0xff00ff, // 4
+          0xffff00, // 5
+          0x00ffff, // 6
+          0xff8800, // 7
+          0x88ff00, // 8
+          0xff0088, // 9
+          0x0088ff, // 10
+          0x8800ff, // 11
+          0xff5500, // 12
+          0x55ff00, // 13
+          0xff0055, // 14
+          0x0055ff, // 15
+          0x5500ff, // 16
+          0xffaa00, // 17
+          0xaaff00, // 18
+          0xff00aa, // 19
+          0x00aaff, // 20
+          0x00ffaa, // 21
+          0xaaff00, // 22
+          0xff00aa, // 23
+          0x00aaff, // 24
+          0x00ffaa, // 25
+          0xaa00ff, // 26
+          0xffaa00, // 27
+          0x00ffaa, // 28
+          0x00aaff  // 29
+          // Puedes agregar más colores aquí si lo deseas
+        ];
+
         // Crear el material de letra correcta (verde)
-        const materialCorrecto = new THREE.MeshPhongMaterial({ color: 0x00ff00, flatShading: true });
+        const materialCorrecto = new THREE.MeshPhongMaterial({ color: colores[1], flatShading: true });
+
+        const materialActual = new THREE.MeshPhongMaterial({ color: colores[4], flatShading: true });
 
         // Crear el material de letra incorrecta (roja)
-        const materialIncorrecto = new THREE.MeshPhongMaterial({ color: 0xff0000, flatShading: true });
+        const materialIncorrecto = new THREE.MeshPhongMaterial({ color: colores[2], flatShading: true });
 
         let totalWidth = 0;
 
@@ -51,7 +88,7 @@ class Texto3D {
         for (let i = 0; i < text.length; i++) {
             let letraGeo = new TextGeometry( text[i], {
                 font: font,
-                size: size,
+                size: (i === this.indicePalabra) ? sizeActual : size,
                 depth: depth,
                 curveSegments: curveSegments,
                 bevelThickness: bevelThickness,
@@ -60,7 +97,22 @@ class Texto3D {
             } );
 
             // Crear la malla de la letra con el material correspondiente
-            let letraMesh = new THREE.Mesh( letraGeo, (i < this.indicePalabra) ? materialCorrecto : materialIncorrecto );
+            // let letraMesh = new THREE.Mesh( letraGeo, (i < this.indicePalabra) ? materialCorrecto : materialIncorrecto );
+
+            let letraMesh = new THREE.Mesh(
+              letraGeo,
+              (i < this.indicePalabra) 
+                  ? materialCorrecto 
+                  : (i === this.indicePalabra) 
+                      ? materialActual 
+                      : materialIncorrecto
+            );
+
+            // const colorIndex = i % colores.length; // El operador de módulo (%) se usa para asegurarse de que el índice esté dentro del rango de colores
+
+            // let letraMaterial = new THREE.MeshPhongMaterial({ color: colores[colorIndex], flatShading: true });
+
+            // let letraMesh = new THREE.Mesh(letraGeo, letraMaterial);
 
             // Calcular el desplazamiento horizontal de la letra
             letraGeo.computeBoundingBox();

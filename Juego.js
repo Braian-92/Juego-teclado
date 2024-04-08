@@ -22,8 +22,13 @@ class Juego {
     const container = document.createElement('div');
     document.body.appendChild(container);
 
+    this.palabrasKPI = 0;
+    this.correctasKPI = 0;
+    this.incorrectasKPI = 0;
+
     this.indNombre = 0;
     this.nombres = [
+      // 'ABCDEFGHIJKLMN',
       'EVELYN',
       'TECHEIRA',
       'NATALIA',
@@ -70,8 +75,8 @@ class Juego {
 
     this.assetsPath = './assets/';
 
-    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 100);
-    this.camera.position.set(0, 0, 30);
+    this.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.01, 100);
+    this.camera.position.set(0, 0, 100);
 
     this.scene = new THREE.Scene();
 
@@ -83,6 +88,7 @@ class Juego {
       antialias: true,
       alpha: true
     });
+    
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.outputEncoding = THREE.sRGBEncoding;
@@ -124,6 +130,11 @@ class Juego {
           sfx.play('bonus');
           console.log('termino juego');
           setTimeout(() => {
+            juego.palabrasKPI++;
+
+            var kpiHTML = document.getElementById("palabrasDigitadas");
+            kpiHTML.textContent = juego.palabrasKPI;
+
             console.log('llego al intervalo');
             juego.indNombre ++;
             texto3D.indicePalabra = 0;
@@ -137,10 +148,19 @@ class Juego {
           }, 2000);
         }else{
           if(resultadoLetra){
+            juego.correctasKPI++;
+            var kpiHTML = document.getElementById("letrasCorrectas");
+            kpiHTML.textContent = juego.correctasKPI;
+            
             texto3D.crearTexto(texto3D.palabra);
             sfx.stopAll();
             sfx.play('teclaCristal');
           }else{
+            juego.incorrectasKPI++;
+            var kpiHTML = document.getElementById("letrasIncorrectas");
+            kpiHTML.textContent = juego.incorrectasKPI;
+
+
             sfx.stopAll();
             sfx.play('error');
           }

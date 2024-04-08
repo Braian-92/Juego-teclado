@@ -28,12 +28,67 @@
         justify-content: center;
         z-index: 1000; /* Asegura que el botón esté sobre otros elementos */
     }
+
+    .valores {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .valor {
+      margin-bottom: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 4px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .titulo {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .contenido {
+      text-align: center;
+      color: #000; /* Color negro */
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .color-rojo{
+      color:red;
+    }
+    .color-verde{
+      color:green;
+    }
+    .color-violeta{
+      color:blueviolet;
+    }
   </style>
 </head>
 <body class="dark-modeX">
   <button class="floating-button" onclick="toggleFullScreen()">
     <i class="fas fa-expand"></i> <!-- Icono de pantalla completa (requiere Font Awesome) -->
   </button>
+
+  <div class="valores">
+    <div class="valor">
+      <div class="titulo">Palabras</div>
+      <div id="palabrasDigitadas" class="contenido color-violeta">0</div>
+    </div>
+    <div class="valor">
+      <div class="titulo">Letras correctas</div>
+      <div id="letrasCorrectas" class="contenido color-verde">0</div>
+    </div>
+    <div class="valor">
+      <div class="titulo ">Letras incorrectas</div>
+      <div id="letrasIncorrectas" class="contenido color-rojo">0</div>
+    </div>
+  </div>
+
 </body>
 <script type="importmap">
   {
