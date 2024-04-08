@@ -22,6 +22,47 @@ class Juego {
     const container = document.createElement('div');
     document.body.appendChild(container);
 
+    this.indNombre = 0;
+    this.nombres = [
+      'EVELYN',
+      'TECHEIRA',
+      'NATALIA',
+      'BRAIAN',
+      'SAMARA',
+      'CINTIA',
+      'AGUSTIN',
+      'MAURO',
+      'TIA',
+      'TIO',
+      'ABUELA',
+      'ABUELO',
+      'PRIMA',
+      'LUPE',
+      'DIANA',
+      'MAMA',
+      'PAPA',
+      'CASA',
+      'AUTO',
+      'PUERTA',
+      'MESA',
+      'COMIDA',
+      'CAMA',
+      'PERRO',
+      'GATO',
+      'LORO',
+      'OVEJA',
+      'RATON',
+      'ELEFANTE',
+      'CARACOL',
+      'VACA',
+      'CERDO',
+      'POLLO',
+      'SOL',
+      'LUNA',
+      'ESTRELLA',
+      'NUVE',
+      
+    ];
     this.loadingBar = new LoadingBar();
     this.loadingBar.visible = false;
 
@@ -56,29 +97,44 @@ class Juego {
       this.assetsPath
     ); // Inicialización de Texto3D
 
-    this.texto3D.crearTexto('EVELYN');
+    this.texto3D.crearTexto(this.nombres[0]);
 
     console.log('texto3D', this.texto3D);
 
     let texto3D = this.texto3D;
     let sfx = this.sfx;
 
+    let juego = this;
+
     this.teclado = new TecladoFlotante({
       id : 'tecladoF',
       presionado: function(parametros) {
         const tecla = parametros.ascii;
         const tipoTecla = parametros.tipo;
-        console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
+        // console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
         let resultadoLetra = texto3D.verificarLetra(tecla);
         const indiceActual = texto3D.indicePalabra;
         const totalLetrasL= texto3D.palabra.length
-        console.log('indiceActual', indiceActual);
-        console.log('totalLetrasL', totalLetrasL);
-        console.log('resultadoLetra', resultadoLetra);
+        // console.log('indiceActual', indiceActual);
+        // console.log('totalLetrasL', totalLetrasL);
+        // console.log('resultadoLetra', resultadoLetra);
         if(indiceActual == totalLetrasL){
           texto3D.crearTexto(texto3D.palabra);
           sfx.stopAll();
           sfx.play('bonus');
+          console.log('termino juego');
+          setTimeout(() => {
+            console.log('llego al intervalo');
+            juego.indNombre ++;
+            texto3D.indicePalabra = 0;
+            console.log('nuevo nombre: ' + juego.nombres[juego.indNombre]);
+            
+            texto3D.crearTexto(juego.nombres[juego.indNombre]);
+
+            if(juego.indNombre == juego.nombres.length){
+              juego.indNombre = 0;
+            }
+          }, 2000);
         }else{
           if(resultadoLetra){
             texto3D.crearTexto(texto3D.palabra);

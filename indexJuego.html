@@ -10,16 +10,47 @@
     body{
       overflow: hidden;
     }
+    .floating-button {
+        position: fixed;
+        top: 20px; /* Distancia desde la parte superior */
+        right: 20px; /* Distancia desde la derecha */
+        background-color: #007bff; /* Color de fondo del botón */
+        color: white; /* Color del texto */
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000; /* Asegura que el botón esté sobre otros elementos */
+    }
   </style>
 </head>
 <body class="dark-modeX">
-  
+  <button class="floating-button" onclick="toggleFullScreen()">
+    <i class="fas fa-expand"></i> <!-- Icono de pantalla completa (requiere Font Awesome) -->
+  </button>
 </body>
 <script type="importmap">
   {
     "imports": {
       "three": "./libs/three/build/three.module.js",
       "three/addons/": "./libs/three/examples/jsm/"
+    }
+  }
+</script>
+<script>
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+          document.exitFullscreen();
+      }
     }
   }
 </script>

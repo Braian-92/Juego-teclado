@@ -26,7 +26,7 @@ class Texto3D {
         fontWeight = 'bold'; // normal bold
     
     const depth = 0.1,
-        size = 10,
+        size = 8,
         hover = .1,
         curveSegments = 10,
         bevelThickness = 1, // profundidad del texto en 3D
