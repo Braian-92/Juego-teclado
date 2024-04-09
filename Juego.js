@@ -34,8 +34,8 @@ class Juego {
     this.indNombre = 0;
     this.nombres = [
       // 'ABCDEFGHIJKLMN',
-      'EVELYN',
       'TECHEIRA',
+      'EVELYN',
       'NATALIA',
       'BRAIAN',
       'SAMARA',
@@ -129,11 +129,13 @@ class Juego {
 
         if(!juego.juegoIniciado){
           juego.juegoIniciado = true;
-          setTimeout(() => {
-            console.log(sfx);
-            console.log(juego.nombres[juego.indNombre]);
-            sfx.play(juego.nombres[juego.indNombre]);
-          }, 1000);
+          // setTimeout(() => {
+          //   console.log(sfx);
+          //   console.log(juego.nombres[juego.indNombre]);
+          //   sfx.play(juego.nombres[juego.indNombre]);
+          // }, 1000);
+        }else{
+
         }
         const tecla = parametros.ascii;
         const tipoTecla = parametros.tipo;
@@ -164,6 +166,13 @@ class Juego {
 
             setTimeout(() => {
               sfx.play(juego.nombres[juego.indNombre]);
+
+              setTimeout(() => {
+                const letraActual = texto3D.letraActual();
+                console.log('letraActual: ' + letraActual);
+                sfx.play(letraActual);
+              }, 2000);
+              
             }, 1000);
 
             if(juego.indNombre == juego.nombres.length){
@@ -179,6 +188,14 @@ class Juego {
             texto3D.crearTexto(texto3D.palabra);
             sfx.stopAll();
             sfx.play('teclaCristal');
+
+            setTimeout(() => {
+              const letraActual = texto3D.letraActual();
+              console.log('letraActual: ' + letraActual);
+              sfx.play(letraActual);
+            }, 1000);
+
+            
           }else{
             juego.incorrectasKPI++;
             var kpiHTML = document.getElementById("letrasIncorrectas");
@@ -253,45 +270,76 @@ class Juego {
     this.sfx.load('error');
     this.sfx.load('EVELYN');
     setTimeout(() => {
-      this.sfx.load('TECHEIRA');
-      this.sfx.load('NATALIA');
-      this.sfx.load('BRAIAN');
-      this.sfx.load('SAMARA');
-      this.sfx.load('CINTIA');
-      this.sfx.load('AGUSTIN');
-      this.sfx.load('MAURO');
-      this.sfx.load('LILIAN');
-      this.sfx.load('TIA');
-      this.sfx.load('TIO');
-      this.sfx.load('ABUELA');
-      this.sfx.load('ABUELO');
-      this.sfx.load('PRIMA');
-      this.sfx.load('LUPE');
-      this.sfx.load('DIANA');
-      this.sfx.load('MAMA');
-      this.sfx.load('PAPA');
-      this.sfx.load('CASA');
-      this.sfx.load('AUTO');
-      this.sfx.load('PUERTA');
-      this.sfx.load('MESA');
-      this.sfx.load('COMIDA');
-      this.sfx.load('CAMA');
-      this.sfx.load('PERRO');
-      this.sfx.load('GATO');
-      this.sfx.load('LORO');
-      this.sfx.load('OVEJA');
-      this.sfx.load('RATON');
-      this.sfx.load('ELEFANTE');
-      this.sfx.load('CARACOL');
-      this.sfx.load('CONEJO');
-      this.sfx.load('VACA');
-      this.sfx.load('CERDO');
-      this.sfx.load('POLLO');
-      this.sfx.load('SOL');
-      this.sfx.load('LUNA');
-      this.sfx.load('ESTRELLA');
-      this.sfx.load('NUVE');
-    }, 2000);
+      this.sfx.load('A');
+      this.sfx.load('B');
+      this.sfx.load('C');
+      this.sfx.load('D');
+      this.sfx.load('E');
+      this.sfx.load('F');
+      this.sfx.load('G');
+      this.sfx.load('H');
+      this.sfx.load('I');
+      this.sfx.load('J');
+      this.sfx.load('K');
+      this.sfx.load('L');
+      this.sfx.load('M');
+      this.sfx.load('N');
+      this.sfx.load('O');
+      this.sfx.load('P');
+      this.sfx.load('Q');
+      this.sfx.load('R');
+      this.sfx.load('S');
+      this.sfx.load('T');
+      this.sfx.load('U');
+      this.sfx.load('V');
+      this.sfx.load('W');
+      this.sfx.load('X');
+      this.sfx.load('Y');
+      this.sfx.load('Z');
+
+
+      setTimeout(() => {
+
+        this.sfx.load('TECHEIRA');
+        this.sfx.load('NATALIA');
+        this.sfx.load('BRAIAN');
+        this.sfx.load('SAMARA');
+        this.sfx.load('CINTIA');
+        this.sfx.load('AGUSTIN');
+        this.sfx.load('MAURO');
+        this.sfx.load('LILIAN');
+        this.sfx.load('TIA');
+        this.sfx.load('TIO');
+        this.sfx.load('ABUELA');
+        this.sfx.load('ABUELO');
+        this.sfx.load('PRIMA');
+        this.sfx.load('LUPE');
+        this.sfx.load('DIANA');
+        this.sfx.load('MAMA');
+        this.sfx.load('PAPA');
+        this.sfx.load('CASA');
+        this.sfx.load('AUTO');
+        this.sfx.load('PUERTA');
+        this.sfx.load('MESA');
+        this.sfx.load('COMIDA');
+        this.sfx.load('CAMA');
+        this.sfx.load('PERRO');
+        this.sfx.load('GATO');
+        this.sfx.load('LORO');
+        this.sfx.load('OVEJA');
+        this.sfx.load('RATON');
+        this.sfx.load('ELEFANTE');
+        this.sfx.load('CARACOL');
+        this.sfx.load('CONEJO');
+        this.sfx.load('VACA');
+        this.sfx.load('CERDO');
+        this.sfx.load('POLLO');
+        this.sfx.load('SOL');
+        this.sfx.load('LUNA');
+        this.sfx.load('ESTRELLA');
+        this.sfx.load('NUVE');
+      }, 3000);
+    }, 1000);
     
     
   }

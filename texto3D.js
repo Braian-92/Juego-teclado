@@ -139,6 +139,10 @@ class Texto3D {
     });
   }
 
+  letraActual() {
+    return this.palabra.charAt(this.indicePalabra);
+  }
+
   verificarLetra(ascii) {
     // Verificar si la letra ingresada coincide con la letra de la palabra actual
     const letraPalabra = this.palabra.charAt(this.indicePalabra);

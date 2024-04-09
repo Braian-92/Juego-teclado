@@ -1,0 +1,21 @@
+{
+  "name": "Juego Teclado",
+  "short_name": "Juego Teclado C",
+  "description": "Juego Teclado para niños",
+  "icons": [
+    {
+      "src": "css/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "css/favicon/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/juegoTeclado/indexJuego.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff"
+}
