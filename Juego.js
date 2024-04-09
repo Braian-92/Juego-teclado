@@ -19,9 +19,14 @@ import {
 
 class Juego {
   constructor() {
+    let juego = this;
+    
+    
+    
     const container = document.createElement('div');
     document.body.appendChild(container);
 
+    this.juegoIniciado = 0;
     this.palabrasKPI = 0;
     this.correctasKPI = 0;
     this.incorrectasKPI = 0;
@@ -37,6 +42,7 @@ class Juego {
       'CINTIA',
       'AGUSTIN',
       'MAURO',
+      'LILIAN',
       'TIA',
       'TIO',
       'ABUELA',
@@ -59,6 +65,7 @@ class Juego {
       'RATON',
       'ELEFANTE',
       'CARACOL',
+      'CONEJO',
       'VACA',
       'CERDO',
       'POLLO',
@@ -95,6 +102,7 @@ class Juego {
     container.appendChild(this.renderer.domElement);
     this.setEnvironment();
     this.load();
+    let sfx = this.sfx;
 
     
 
@@ -102,19 +110,31 @@ class Juego {
       this.scene,
       this.assetsPath
     ); // Inicialización de Texto3D
+    let texto3D = this.texto3D;
 
     this.texto3D.crearTexto(this.nombres[0]);
 
+    
+
     console.log('texto3D', this.texto3D);
 
-    let texto3D = this.texto3D;
-    let sfx = this.sfx;
+    
 
-    let juego = this;
+    
 
     this.teclado = new TecladoFlotante({
       id : 'tecladoF',
       presionado: function(parametros) {
+
+
+        if(!juego.juegoIniciado){
+          juego.juegoIniciado = true;
+          setTimeout(() => {
+            console.log(sfx);
+            console.log(juego.nombres[juego.indNombre]);
+            sfx.play(juego.nombres[juego.indNombre]);
+          }, 1000);
+        }
         const tecla = parametros.ascii;
         const tipoTecla = parametros.tipo;
         // console.log('TECLA APRETADA: ' + tecla + ' - topo: ' + tipoTecla);
@@ -141,6 +161,10 @@ class Juego {
             console.log('nuevo nombre: ' + juego.nombres[juego.indNombre]);
             
             texto3D.crearTexto(juego.nombres[juego.indNombre]);
+
+            setTimeout(() => {
+              sfx.play(juego.nombres[juego.indNombre]);
+            }, 1000);
 
             if(juego.indNombre == juego.nombres.length){
               juego.indNombre = 0;
@@ -219,14 +243,57 @@ class Juego {
   loadSFX() {
     this.sfx = new SFX( this.camera, this.assetsPath + 'plane/');
 
-    this.sfx.load('explosion');
-    this.sfx.load('engine', true, 1);
-    this.sfx.load('gliss');
-    this.sfx.load('gameover');
+    // this.sfx.load('explosion');
+    // this.sfx.load('engine', true, 1);
+    // this.sfx.load('gliss');
+    // this.sfx.load('gameover');
     this.sfx.load('bonus');
     this.sfx.load('tecla');
     this.sfx.load('teclaCristal');
     this.sfx.load('error');
+    this.sfx.load('EVELYN');
+    setTimeout(() => {
+      this.sfx.load('TECHEIRA');
+      this.sfx.load('NATALIA');
+      this.sfx.load('BRAIAN');
+      this.sfx.load('SAMARA');
+      this.sfx.load('CINTIA');
+      this.sfx.load('AGUSTIN');
+      this.sfx.load('MAURO');
+      this.sfx.load('LILIAN');
+      this.sfx.load('TIA');
+      this.sfx.load('TIO');
+      this.sfx.load('ABUELA');
+      this.sfx.load('ABUELO');
+      this.sfx.load('PRIMA');
+      this.sfx.load('LUPE');
+      this.sfx.load('DIANA');
+      this.sfx.load('MAMA');
+      this.sfx.load('PAPA');
+      this.sfx.load('CASA');
+      this.sfx.load('AUTO');
+      this.sfx.load('PUERTA');
+      this.sfx.load('MESA');
+      this.sfx.load('COMIDA');
+      this.sfx.load('CAMA');
+      this.sfx.load('PERRO');
+      this.sfx.load('GATO');
+      this.sfx.load('LORO');
+      this.sfx.load('OVEJA');
+      this.sfx.load('RATON');
+      this.sfx.load('ELEFANTE');
+      this.sfx.load('CARACOL');
+      this.sfx.load('CONEJO');
+      this.sfx.load('VACA');
+      this.sfx.load('CERDO');
+      this.sfx.load('POLLO');
+      this.sfx.load('SOL');
+      this.sfx.load('LUNA');
+      this.sfx.load('ESTRELLA');
+      this.sfx.load('NUVE');
+    }, 2000);
+    
+    
   }
 
   loadSkybox() {
