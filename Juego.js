@@ -43,6 +43,26 @@ class Juego {
       'AGUSTIN',
       'MAURO',
       'LILIAN',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+      '15',
+      '16',
+      '17',
+      '18',
+      '19',
+      '20',
       'TIA',
       'TIO',
       'ABUELA',
@@ -120,12 +140,14 @@ class Juego {
 
     
 
-    
+    console.log('assci actual', texto3D.letraActual().charCodeAt(0) );
 
     this.teclado = new TecladoFlotante({
       id : 'tecladoF',
+      teclaInicial: texto3D.letraActual().charCodeAt(0),
       presionado: function(parametros) {
 
+        
 
         if(!juego.juegoIniciado){
           juego.juegoIniciado = true;
@@ -163,15 +185,26 @@ class Juego {
             console.log('nuevo nombre: ' + juego.nombres[juego.indNombre]);
             
             texto3D.crearTexto(juego.nombres[juego.indNombre]);
+            console.log('longitud palabra X: ', texto3D.get_longitud());
 
+            
             setTimeout(() => {
               sfx.play(juego.nombres[juego.indNombre]);
 
-              setTimeout(() => {
+              if(texto3D.get_longitud() == 1){
                 const letraActual = texto3D.letraActual();
                 console.log('letraActual: ' + letraActual);
-                sfx.play(letraActual);
-              }, 2000);
+                // sfx.play(letraActual);
+                this.marcarTecla(texto3D.letraActual().charCodeAt(0))
+              }else{
+                
+                setTimeout(() => {
+                  const letraActual = texto3D.letraActual();
+                  console.log('letraActual: ' + letraActual);
+                  sfx.play(letraActual);
+                  this.marcarTecla(texto3D.letraActual().charCodeAt(0))
+                }, 2000);
+              }
               
             }, 1000);
 
@@ -186,6 +219,7 @@ class Juego {
             kpiHTML.textContent = juego.correctasKPI;
             
             texto3D.crearTexto(texto3D.palabra);
+            console.log('longitud palabra Y: ', texto3D.get_longitud());
             sfx.stopAll();
             sfx.play('teclaCristal');
 
@@ -193,6 +227,7 @@ class Juego {
               const letraActual = texto3D.letraActual();
               console.log('letraActual: ' + letraActual);
               sfx.play(letraActual);
+              this.marcarTecla(texto3D.letraActual().charCodeAt(0))
             }, 1000);
 
             
@@ -296,6 +331,27 @@ class Juego {
       this.sfx.load('X');
       this.sfx.load('Y');
       this.sfx.load('Z');
+      this.sfx.load('0');
+      this.sfx.load('1');
+      this.sfx.load('2');
+      this.sfx.load('3');
+      this.sfx.load('4');
+      this.sfx.load('5');
+      this.sfx.load('6');
+      this.sfx.load('7');
+      this.sfx.load('8');
+      this.sfx.load('9');
+      this.sfx.load('10');
+      this.sfx.load('11');
+      this.sfx.load('12');
+      this.sfx.load('13');
+      this.sfx.load('14');
+      this.sfx.load('15');
+      this.sfx.load('16');
+      this.sfx.load('17');
+      this.sfx.load('18');
+      this.sfx.load('19');
+      this.sfx.load('20');
 
 
       setTimeout(() => {

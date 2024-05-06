@@ -4,6 +4,8 @@ import {
   PositionalAudio,
   AudioLoader
 } from './libs/three/build/three.module.js';
+// pagina para crear los audios en base de texto
+// https://vozfly.com/
 
 class SFX {
     constructor(camera, assetsPath, listener){

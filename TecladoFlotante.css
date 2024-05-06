@@ -34,12 +34,16 @@
   margin: 1px
 }
 #teclado .rowTeclas .teclas.active, .teclaH50.active {
-    background-color: #E6FFD8;
-    border-color: #6FDA54
+    /* background-color: #E6FFD8;
+    border-color: #6FDA54 */
 }
 #teclado .rowTeclas .teclas:hover {
-    background-color: #FFD488;
-    border-color: #FFAE6E
+  /* background-color: #FFD488;
+  border-color: #FFAE6E */
+}
+#teclado .rowTeclas .teclas.tecla_marcada {
+  background-color: #FFD488;
+  border-color: #FFAE6E
 }
 .sabana{
   position: absolute;

@@ -174,6 +174,9 @@ class Texto3D {
       return false;
     }
   }
+  get_longitud() {
+    return this.palabra.length;
+  }
 }
 
 export { Texto3D };

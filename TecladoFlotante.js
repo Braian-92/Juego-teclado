@@ -120,6 +120,9 @@ class TecladoFlotante {
     if (typeof options.presionado === 'function') {
       this.presionadoCallback = options.presionado;
     }
+
+		
+		this.marcarTecla(this.options.teclaInicial);
   }
 
   handleClick(event) {
@@ -141,6 +144,21 @@ class TecladoFlotante {
   presionado(callback) {
     // Permite establecer una función de callback para manejar eventos de teclado
     this.presionadoCallback = callback;
+  }
+
+	marcarTecla(ascii) {
+    // Buscar todas las teclas con la clase "tecla_marcada" y limpiarlas
+    const teclasMarcadas = this.contenedor.querySelectorAll('.tecla_marcada');
+    teclasMarcadas.forEach(tecla => {
+      tecla.classList.remove('tecla_marcada');
+    });
+
+    // Buscar la tecla con el atributo asciiTecla igual al valor proporcionado
+    const teclaAMarcar = this.contenedor.querySelector(`[asciiTecla="${ascii}"]`);
+    if (teclaAMarcar) {
+      // Aplicar la clase "tecla_marcada" a la tecla encontrada
+      teclaAMarcar.classList.add('tecla_marcada');
+    }
   }
 }
 
