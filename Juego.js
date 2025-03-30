@@ -78,23 +78,52 @@ class Juego {
       'MESA',
       'COMIDA',
       'CAMA',
-      'PERRO',
-      'GATO',
-      'LORO',
-      'OVEJA',
-      'RATON',
-      'ELEFANTE',
-      'CARACOL',
-      'CONEJO',
-      'VACA',
-      'CERDO',
-      'POLLO',
+      // 'PERRO',
+      // 'GATO',
+      // 'LORO',
+      // 'OVEJA',
+      // 'RATON',
+      // 'ELEFANTE',
+      // 'CARACOL',
+      // 'CONEJO',
+      // 'VACA',
+      // 'CERDO',
+      // 'POLLO',
       'SOL',
       'LUNA',
       'ESTRELLA',
       'NUVE',
       
     ];
+
+    this.nombres = [
+      "ARDILLA",
+      "BALLENA",
+      "CABALLO",
+      "DELFIN",
+      "ELEFANTE",
+      "FOCA",
+      "GATO",
+      "HIPOPOTAMO",
+      "IGUANA",
+      "JIRAFA",
+      "KOALA",
+      "LORO",
+      "MARIPOSA",
+      "NUTRIA",
+      // "NANDU",
+      "OSO",
+      "PERRO",
+      "QUIRQUINCHO",
+      "RATON",
+      "SAPO",
+      "TORTUGA",
+      "URRACA",
+      "VACA",
+      "YACARE",
+      "ZORRO"
+    ];
+
     this.loadingBar = new LoadingBar();
     this.loadingBar.visible = false;
 
@@ -331,69 +360,73 @@ class Juego {
       this.sfx.load('X');
       this.sfx.load('Y');
       this.sfx.load('Z');
-      this.sfx.load('0');
-      this.sfx.load('1');
-      this.sfx.load('2');
-      this.sfx.load('3');
-      this.sfx.load('4');
-      this.sfx.load('5');
-      this.sfx.load('6');
-      this.sfx.load('7');
-      this.sfx.load('8');
-      this.sfx.load('9');
-      this.sfx.load('10');
-      this.sfx.load('11');
-      this.sfx.load('12');
-      this.sfx.load('13');
-      this.sfx.load('14');
-      this.sfx.load('15');
-      this.sfx.load('16');
-      this.sfx.load('17');
-      this.sfx.load('18');
-      this.sfx.load('19');
-      this.sfx.load('20');
+      // this.sfx.load('0');
+      // this.sfx.load('1');
+      // this.sfx.load('2');
+      // this.sfx.load('3');
+      // this.sfx.load('4');
+      // this.sfx.load('5');
+      // this.sfx.load('6');
+      // this.sfx.load('7');
+      // this.sfx.load('8');
+      // this.sfx.load('9');
+      // this.sfx.load('10');
+      // this.sfx.load('11');
+      // this.sfx.load('12');
+      // this.sfx.load('13');
+      // this.sfx.load('14');
+      // this.sfx.load('15');
+      // this.sfx.load('16');
+      // this.sfx.load('17');
+      // this.sfx.load('18');
+      // this.sfx.load('19');
+      // this.sfx.load('20');
 
 
       setTimeout(() => {
 
-        this.sfx.load('TECHEIRA');
-        this.sfx.load('NATALIA');
-        this.sfx.load('BRAIAN');
-        this.sfx.load('SAMARA');
-        this.sfx.load('CINTIA');
-        this.sfx.load('AGUSTIN');
-        this.sfx.load('MAURO');
-        this.sfx.load('LILIAN');
-        this.sfx.load('TIA');
-        this.sfx.load('TIO');
-        this.sfx.load('ABUELA');
-        this.sfx.load('ABUELO');
-        this.sfx.load('PRIMA');
-        this.sfx.load('LUPE');
-        this.sfx.load('DIANA');
-        this.sfx.load('MAMA');
-        this.sfx.load('PAPA');
-        this.sfx.load('CASA');
-        this.sfx.load('AUTO');
-        this.sfx.load('PUERTA');
-        this.sfx.load('MESA');
-        this.sfx.load('COMIDA');
-        this.sfx.load('CAMA');
-        this.sfx.load('PERRO');
-        this.sfx.load('GATO');
-        this.sfx.load('LORO');
-        this.sfx.load('OVEJA');
-        this.sfx.load('RATON');
-        this.sfx.load('ELEFANTE');
-        this.sfx.load('CARACOL');
-        this.sfx.load('CONEJO');
-        this.sfx.load('VACA');
-        this.sfx.load('CERDO');
-        this.sfx.load('POLLO');
-        this.sfx.load('SOL');
-        this.sfx.load('LUNA');
-        this.sfx.load('ESTRELLA');
-        this.sfx.load('NUVE');
+        this.nombres.forEach(element => {
+          this.sfx.newLoad(element, this.assetsPath + 'audios/animales/');
+        });
+
+        // this.sfx.load('TECHEIRA');
+        // this.sfx.load('NATALIA');
+        // this.sfx.load('BRAIAN');
+        // this.sfx.load('SAMARA');
+        // this.sfx.load('CINTIA');
+        // this.sfx.load('AGUSTIN');
+        // this.sfx.load('MAURO');
+        // this.sfx.load('LILIAN');
+        // this.sfx.load('TIA');
+        // this.sfx.load('TIO');
+        // this.sfx.load('ABUELA');
+        // this.sfx.load('ABUELO');
+        // this.sfx.load('PRIMA');
+        // this.sfx.load('LUPE');
+        // this.sfx.load('DIANA');
+        // this.sfx.load('MAMA');
+        // this.sfx.load('PAPA');
+        // this.sfx.load('CASA');
+        // this.sfx.load('AUTO');
+        // this.sfx.load('PUERTA');
+        // this.sfx.load('MESA');
+        // this.sfx.load('COMIDA');
+        // this.sfx.load('CAMA');
+        // this.sfx.load('PERRO');
+        // this.sfx.load('GATO');
+        // this.sfx.load('LORO');
+        // this.sfx.load('OVEJA');
+        // this.sfx.load('RATON');
+        // this.sfx.load('ELEFANTE');
+        // this.sfx.load('CARACOL');
+        // this.sfx.load('CONEJO');
+        // this.sfx.load('VACA');
+        // this.sfx.load('CERDO');
+        // this.sfx.load('POLLO');
+        // this.sfx.load('SOL');
+        // this.sfx.load('LUNA');
+        // this.sfx.load('ESTRELLA');
+        // this.sfx.load('NUVE');
       }, 3000);
     }, 1000);
     

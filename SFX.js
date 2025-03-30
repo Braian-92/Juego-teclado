@@ -2,74 +2,83 @@ import {
   AudioListener,
   Audio,
   PositionalAudio,
-  AudioLoader
-} from './libs/three/build/three.module.js';
+  AudioLoader,
+} from "./libs/three/build/three.module.js";
 // pagina para crear los audios en base de texto
 // https://vozfly.com/
 
 class SFX {
-    constructor(camera, assetsPath, listener){
-        if (listener==null){
-    this.listener = new AudioListener();
-    camera.add( this.listener );
-        }else{
-            this.listener = listener;
-        }
+  constructor(camera, assetsPath, listener) {
+    if (listener == null) {
+      this.listener = new AudioListener();
+      camera.add(this.listener);
+    } else {
+      this.listener = listener;
+    }
 
     this.assetsPath = assetsPath;
 
     this.sounds = {};
   }
 
-    load(name, loop=false, vol=0.5, obj=null){
-        // create a global audio source
-        const sound = (obj==null) ? new Audio( this.listener ) : new PositionalAudio( this.listener );
+
+
+  load(name, loop = false, vol = 0.5, obj = null) {
+    this.newLoad(name, this.assetsPath, loop = false, vol = 0.5, obj = null);
+  }
+
+  newLoad(name, path, loop = false, vol = 0.5, obj = null) {
+    // create a global audio source
+    const sound =
+      obj == null
+        ? new Audio(this.listener)
+        : new PositionalAudio(this.listener);
 
     this.sounds[name] = sound;
 
-        // load a sound and set it as the Audio object's buffer
-        const audioLoader = new AudioLoader().setPath(this.assetsPath);
-        audioLoader.load( `${name}.mp3`, buffer => {
-      sound.setBuffer( buffer );
-      sound.setLoop( loop );
-      sound.setVolume( vol );
+    // load a sound and set it as the Audio object's buffer
+    const audioLoader = new AudioLoader().setPath(path);
+    audioLoader.load(`${name}.mp3`, (buffer) => {
+      sound.setBuffer(buffer);
+      sound.setLoop(loop);
+      sound.setVolume(vol);
     });
 
-        if (obj!==null) obj.add(sound);
+    if (obj !== null) obj.add(sound);
   }
 
-    setVolume(name, volume){
+  setVolume(name, volume) {
     const sound = this.sounds[name];
 
-        if (sound !== undefined) sound.setVolume(volume);
+    if (sound !== undefined) sound.setVolume(volume);
   }
 
-    setLoop(name, loop){
+  setLoop(name, loop) {
     const sound = this.sounds[name];
 
-        if (sound !== undefined) sound.setLoop(loop);
+    if (sound !== undefined) sound.setLoop(loop);
   }
 
-    play(name){
+  play(name) {
     const sound = this.sounds[name];
 
-        if (sound !== undefined && !sound.isPlaying) sound.play();
+    if (sound !== undefined && !sound.isPlaying) sound.play();
   }
 
-    stop(name){
+  stop(name) {
     const sound = this.sounds[name];
 
-        if (sound !== undefined && sound.isPlaying) sound.stop();
+    if (sound !== undefined && sound.isPlaying) sound.stop();
   }
 
-    stopAll(){
-        for(let name in this.sounds) this.stop(name);
+  stopAll() {
+    for (let name in this.sounds) this.stop(name);
   }
 
-    pause(name){
+  pause(name) {
     const sound = this.sounds[name];
 
-        if (sound !== undefined) sound.pause();
+    if (sound !== undefined) sound.pause();
   }
 }
 
